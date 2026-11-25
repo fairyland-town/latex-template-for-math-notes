@@ -11,23 +11,23 @@ A LaTeX template designed for writing math notes: colored theorem environments (
 <a id="preview"></a>
 ## 1. Preview
 
-**Cover** (`preview/page-1.png`)
+**Cover** (`preview/en-cover.png`)
 
-![Cover](preview/page-1.png)
+![Cover](preview/en-cover.png)
 
-**Theorem boxes and colored environments** (`preview/page-4.png`)
+**Theorem boxes and colored environments** (`preview/en-theorems.png`)
 
-![Theorem boxes](preview/page-4.png)
+![Theorem boxes](preview/en-theorems.png)
 
-**Formulas, tables, and figures** (`preview/page-5.png`)
+**Formulas, tables, and figures** (`preview/en-formulas.png`)
 
-![Formulas, tables, and figures](preview/page-5.png)
+![Formulas, tables, and figures](preview/en-formulas.png)
 
-**5 color families overview** (`preview/配色效果图.png`, [PDF version](preview/配色效果图.pdf))
+**5 color families overview** (`preview/配色效果图-EN.png`, [PDF version](preview/配色效果图-EN.pdf))
 
-![Color scheme](preview/配色效果图.png)
+![Color scheme](preview/配色效果图-EN.png)
 
-The full 6-page sample is [main.pdf](main.pdf); larger page images are in [`preview/`](preview/).
+The full 6-page English sample is [示例文档-EN.pdf](preview/示例文档-EN.pdf); larger page images are in [`preview/`](preview/).
 
 ---
 
