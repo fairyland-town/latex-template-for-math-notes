@@ -1,0 +1,108 @@
+% =============================================================
+%  彩色定理环境（tcolorbox 实现）
+%  编号规则：定义单独编号；定理/引理/推论/准则共用编号；
+%            命题、例题各自编号；注、证明、解不编号。
+%  配色：5 大色系 + "同色不同形"三级样式，颜色定义在 personal.tex
+%  使用 tcolorbox：可跨页、框内可放图片，样式稳定。
+% =============================================================
+
+% ---------- 计数器 ----------
+\newcounter{Def}[section]
+\renewcommand{\theDef}{\thesection.\arabic{Def}}
+\newcounter{noteThm}[section]
+\renewcommand{\thenoteThm}{\thesection.\arabic{noteThm}}
+\newcounter{Pro}[section]
+\renewcommand{\thePro}{\thesection.\arabic{Pro}}
+\newcounter{Ex}[section]
+\renewcommand{\theEx}{\thesection.\arabic{Ex}}
+
+% ---------- 基础样式 ----------
+\tcbset{
+  mathboxbase/.style={
+    enhanced, breakable,
+    arc=2pt,
+    boxrule=0pt, leftrule=3pt,
+    left=8pt, right=8pt, top=6pt, bottom=6pt,
+    fonttitle=\bfseries,
+    attach title to upper={\par\vspace{3pt}},
+    before skip=7pt, after skip=7pt,
+  }
+}
+
+% 【第一层级：实心浅底】定义、定理、推论、注释
+\tcbset{
+  defstyle/.style={mathboxbase, colframe=defMain, colback=defBg, coltitle=defMain},
+  thmstyle/.style={mathboxbase, colframe=thmMain, colback=thmBg, coltitle=thmMain},
+  corstyle/.style={mathboxbase, colframe=corMain, colback=corBg, coltitle=corMain},
+  remstyle/.style={mathboxbase, colframe=remMain, colback=remBg, coltitle=remMain},
+}
+
+% 【第二层级：浅底/白底 + 0.4pt 细外框】命题、准则、引理（同色不同形）
+\tcbset{
+  propstyle/.style={mathboxbase, colframe=thmMain, colback=propBg, coltitle=thmMain,
+    toprule=0.4pt, bottomrule=0.4pt, rightrule=0.4pt},
+  critstyle/.style={mathboxbase, colframe=thmMain, colback=propBg, coltitle=thmMain,
+    toprule=0.4pt, bottomrule=0.4pt, rightrule=0.4pt},
+  lemstyle/.style={mathboxbase, colframe=corMain, colback=white, coltitle=corMain,
+    toprule=0.4pt, bottomrule=0.4pt, rightrule=0.4pt},
+}
+
+% 【第三层级：无底色留白 + 2.5pt 左竖线】例题（高频长篇幅，避免染花页面）
+\tcbset{
+  exstyle/.style={mathboxbase, colframe=exMain, colback=white, coltitle=exMain,
+    leftrule=2.5pt, toprule=0pt, bottomrule=0pt, rightrule=0pt},
+}
+
+% ---------- 环境定义 ----------
+\newtcolorbox{definition}[1][]{
+  defstyle,
+  code={\refstepcounter{Def}},
+  title={\nmDef~\theDef\ifstrempty{#1}{}{\nmLParen#1\nmRParen}}
+}
+
+\newtcolorbox{theorem}[1][]{
+  thmstyle,
+  code={\refstepcounter{noteThm}},
+  title={\nmThm~\thenoteThm\ifstrempty{#1}{}{\nmLParen#1\nmRParen}}
+}
+
+\newtcolorbox{lemma}[1][]{
+  lemstyle,
+  code={\refstepcounter{noteThm}},
+  title={\nmLemma~\thenoteThm\ifstrempty{#1}{}{\nmLParen#1\nmRParen}}
+}
+
+\newtcolorbox{corollary}[1][]{
+  corstyle,
+  code={\refstepcounter{noteThm}},
+  title={\nmCor~\thenoteThm\ifstrempty{#1}{}{\nmLParen#1\nmRParen}}
+}
+
+\newtcolorbox{criterion}[1][]{
+  critstyle,
+  code={\refstepcounter{noteThm}},
+  title={\nmCri~\thenoteThm\ifstrempty{#1}{}{\nmLParen#1\nmRParen}}
+}
+
+\newtcolorbox{proposition}[1][]{
+  propstyle,
+  code={\refstepcounter{Pro}},
+  title={\nmPro~\thePro\ifstrempty{#1}{}{\nmLParen#1\nmRParen}}
+}
+
+\newtcolorbox{remark}[1][]{
+  remstyle,
+  title={\nmRmk\ifstrempty{#1}{}{\nmLParen#1\nmRParen}}
+}
+
+\newtcolorbox{example}[1][]{
+  exstyle,
+  code={\refstepcounter{Ex}},
+  title={\nmEx~\theEx\ifstrempty{#1}{}{\nmLParen#1\nmRParen}}
+}
+
+% ---------- 证明 / 解（不编号，颜色统一指向蓝色系主色）----------
+\renewcommand{\proofname}{\indent\textbf{\textcolor{thmMain}{\nmProof}}}
+\newenvironment{solution}
+  {\begin{proof}[\indent\textbf{\textcolor{thmMain}{\nmSol}}]}
+  {\end{proof}}

@@ -4,7 +4,41 @@
 
 一套为数学笔记写作设计的 LaTeX 模板：彩色定理环境（可跨页、框内可插图）、按章节组织、中英文一键切换。所有个人设置收拢在 **一个文件** `personal.tex`，写笔记时只需维护章节文件。
 
-**目录**（点击跳转）：[效果预览](#preview) · [快速开始](#quickstart) · [真人怎么写](#human) · [AI 怎么用](#ai) · [配置与维护](#maintain) · [优缺点](#proscons) · [常见问题](#faq) · [结构与命令速查](#reference)
+**目录**（点击跳转）：[选择你的使用方式](#routes) · [效果预览](#preview) · [快速开始](#quickstart) · [真人怎么写](#human) · [AI 怎么用](#ai) · [配置与维护](#maintain) · [优缺点](#proscons) · [常见问题](#faq) · [结构与命令速查](#reference)
+
+---
+
+<a id="routes"></a>
+## 零、选择你的使用方式
+
+这个仓库提供**两套用法**，按需选一种即可（也可以都用）：
+
+| | 🖊️ 手搓源码（不用 AI） | 🤖 AI 助手（一句话安装） |
+| --- | --- | --- |
+| **适合谁** | 想自己掌控每个字符、不依赖任何 AI 工具的人 | 想让 AI 按模板规则帮你写、改、编译的人 |
+| **拿到什么** | 仓库根目录就是完整 LaTeX 项目源码（`main.tex` + `config/` + `chapters/`） | 仓库里的 `skills/personal-math-notes/` 标准技能包 |
+| **怎么用** | clone → 改 `personal.tex` → `xelatex main.tex` | 对 AI 说"安装这个 skill + 仓库链接"，AI 跑安装脚本后即可喊话调用 |
+| **依赖** | 只需 TeX Live | 需 TeX Live + 一个支持工具调用的 AI 助手 |
+| **详细步骤** | 见下方[快速开始](#quickstart)与[真人怎么写](#human) | 见下方[AI 怎么用](#ai) |
+
+> 两条路线用的是**同一套模板**：源码在仓库根目录，AI 技能包在 `skills/` 目录（内含一份便携模板副本）。手搓用户完全不需要理会 `skills/` 和 `scripts/`。
+
+**AI 用户一句话安装**（对支持工具调用的 AI 说）：
+
+```
+请帮我安装这个 skill：https://github.com/fairyland-town/latex-template-for-math-notes.git
+先 clone 仓库，再运行 scripts/install.sh（可用 --agent 指定 codex/claude/workbuddy 等）。
+安装完成后运行 scripts/install.sh --check 验证，并保留 skills/ 下的完整目录结构。
+```
+
+手动安装也可以：
+
+```bash
+git clone https://github.com/fairyland-town/latex-template-for-math-notes.git
+cd latex-template-for-math-notes
+bash scripts/install.sh            # 自动检测已安装的 agent
+bash scripts/install.sh --agent all # 或装到所有支持的 agent
+```
 
 ---
 
@@ -256,7 +290,15 @@ latex-template-for-math-notes/
 │   ├── 01-demo/chap.tex      # 完整示例章
 │   └── 00-template/chap.tex  # 空白章模板
 ├── figures/              # 图片统一放这里
-├── preview/              # 示例页预览图 + 配色效果图
+├── preview/              # 示例页预览图 + 配色效果图（含英文版）
+├── skills/               # 🤖 AI 技能包（手搓用户可忽略）
+│   └── personal-math-notes/
+│       ├── SKILL.md          # 技能入口
+│       ├── manifest.yaml     # 技能元数据
+│       ├── references/       # 详细约定
+│       └── assets/template/  # 便携模板副本
+├── scripts/              # 🤖 安装脚本（手搓用户可忽略）
+│   └── install.sh            # 把技能装到 AI 工具目录
 └── main.pdf              # 示例成品
 ```
 

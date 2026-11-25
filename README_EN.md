@@ -4,7 +4,41 @@
 
 A LaTeX template designed for writing math notes: colored theorem environments (page-breakable, images allowed), chapter-based organization, and a one-click Chinese/English toggle. All personal settings live in a **single file** `personal.tex`, so writing only requires maintaining your chapter files.
 
-**Table of contents** (click to jump): [Preview](#preview) · [Quick Start](#quickstart) · [Writing by Hand](#human) · [Using with AI](#ai) · [Configuration & Maintenance](#maintain) · [Pros & Cons](#proscons) · [FAQ](#faq) · [Structure & Command Reference](#reference)
+**Table of contents** (click to jump): [Choose Your Route](#routes) · [Preview](#preview) · [Quick Start](#quickstart) · [Writing by Hand](#human) · [Using with AI](#ai) · [Configuration & Maintenance](#maintain) · [Pros & Cons](#proscons) · [FAQ](#faq) · [Structure & Command Reference](#reference)
+
+---
+
+<a id="routes"></a>
+## 0. Choose Your Route
+
+This repo offers **two ways to use it** — pick whichever fits (or use both):
+
+| | 🖊️ Edit source by hand (no AI) | 🤖 AI assistant (one-line install) |
+| --- | --- | --- |
+| **For whom** | You want full control over every character and no AI dependency | You want an AI to write, edit, and compile following the template rules |
+| **What you get** | The repository root is a complete LaTeX project (`main.tex` + `config/` + `chapters/`) | A standard skill package at `skills/personal-math-notes/` in this repo |
+| **How** | clone → edit `personal.tex` → `xelatex main.tex` | Tell your AI "install this skill + repo link"; it runs the install script, then you invoke the skill by name |
+| **Requires** | TeX Live only | TeX Live + an AI assistant with tool use |
+| **Details** | See [Quick Start](#quickstart) and [Writing by Hand](#human) below | See [Using with AI](#ai) below |
+
+> Both routes use the **same template**: the source lives at the repo root, while the AI skill package lives in `skills/` with a portable copy of the template inside. Hand-editing users can ignore `skills/` and `scripts/` entirely.
+
+**One-line install for AI users** (say this to a tool-using AI):
+
+```
+Please install this skill: https://github.com/fairyland-town/latex-template-for-math-notes.git
+Clone the repo, then run scripts/install.sh (use --agent to specify codex/claude/workbuddy, etc.).
+After installation run scripts/install.sh --check to verify, and keep the full directory structure under skills/.
+```
+
+Manual install also works:
+
+```bash
+git clone https://github.com/fairyland-town/latex-template-for-math-notes.git
+cd latex-template-for-math-notes
+bash scripts/install.sh             # auto-detect installed agents
+bash scripts/install.sh --agent all # or install to all supported agents
+```
 
 ---
 
@@ -260,7 +294,15 @@ latex-template-for-math-notes/
 │   ├── 01-demo/chap.tex      # Full demo chapter
 │   └── 00-template/chap.tex  # Blank chapter template
 ├── figures/              # Images go here
-├── preview/              # Preview pages + color chart
+├── preview/              # Preview pages + color charts (incl. English)
+├── skills/               # 🤖 AI skill package (hand-editing users can ignore)
+│   └── personal-math-notes/
+│       ├── SKILL.md          # skill entry point
+│       ├── manifest.yaml     # skill metadata
+│       ├── references/       # detailed conventions
+│       └── assets/template/  # portable template copy
+├── scripts/              # 🤖 installer (hand-editing users can ignore)
+│   └── install.sh            # copies the skill into AI tool directories
 └── main.pdf              # Sample output
 ```
 

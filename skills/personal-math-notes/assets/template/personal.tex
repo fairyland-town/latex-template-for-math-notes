@@ -1,0 +1,123 @@
+% =============================================================
+%  个人配置文件  ——  ★ 每次写新笔记，通常只改这个文件 ★
+%  所有"专属于你"的内容都集中在这里，正文章节保持干净。
+% =============================================================
+
+% ---------- 0. 语言开关（★ 一键切换中英文）----------
+% 默认中文版；把下一行改成 \Englishtrue 即整体切换为英文版。
+% 作用范围：封面、前言、定理/证明等环境名、括号、章节标题、目录名、日期。
+% 注意：章节正文需自己写成对应语言，开关不会翻译正文内容。
+\newif\ifEnglish
+\Englishfalse      % \Englishfalse = 中文版   |   \Englishtrue = 英文版
+
+% ---------- 1. 封面与前言（中英各一套）----------
+\ifEnglish
+  \def\myTitle{Math Notes}
+  \def\mySubtitle{Analysis · Review and Synthesis}
+  \def\myAuthor{Your Name}
+  \def\myCourse{Course / Class}
+  \def\myTerm{Academic Year 2026}
+  \def\engToday{%
+    \ifcase\month\or January\or February\or March\or April\or May\or June\or
+    July\or August\or September\or October\or November\or December\fi\ \the\day,\ \the\year}
+  \def\myDateCover{\engToday}
+  \def\myForeword{Preface}
+  \def\myForewordText{
+    This is your personal \LaTeX{} template for math notes: theorems, lemmas,
+    corollaries and criteria share one numbering sequence; definitions, propositions
+    and examples are numbered independently; remarks, proofs and solutions are
+    unnumbered.\par
+    \medskip
+    Just maintain the chapter files under \texttt{chapters/}; to change the title,
+    author, colors or theorem names, edit this \texttt{personal.tex} only.
+  }
+\else
+  \def\myTitle{数学笔记}
+  \def\mySubtitle{数学分析 · 复习与整理}
+  \def\myAuthor{你的名字}
+  \def\myCourse{课程 / 班级}
+  \def\myTerm{2026 学年}
+  \def\myDateCover{\today}
+  \def\myForeword{使用说明}
+  \def\myForewordText{
+    这是一份属于你自己的数学笔记模板：定理、引理、推论、准则共用一套编号；
+    定义、命题、例题各自编号；注、证明、解不编号。\par
+    \medskip
+    写作时只需维护 \texttt{chapters/} 下的章节文件；
+    修改标题、作者、配色、定理名称，只改本文件 \texttt{personal.tex} 即可。
+  }
+\fi
+
+% ---------- 2. 主题配色（整套换色只改这里）----------
+% 数字为 RGB 十六进制；主色用于页眉、链接、封面装饰
+\definecolor{themeMain}{HTML}{2B5F8A}      % 主色（深蓝）
+\definecolor{themeAccent}{HTML}{C0563B}    % 强调色（砖红）
+
+% ============================================================
+%  5 大核心色系：8 个环境合并为 5 色，以"同色不同形"区分主次
+%  （本处只定义颜色；盒子的边框/底色分级见 config/theorems.tex）
+% ------------------------------------------------------------
+%  绿色系 → 定义（基础、自然）
+%  蓝色系 → 定理 / 命题 / 准则（冷静、理性）
+%           定理：实心浅蓝底；命题、准则：极浅蓝底 + 0.4pt 细外框
+%  紫色系 → 推论 / 引理（知识、派生）
+%           推论：浅紫底；引理：白底 + 0.4pt 紫色细外框
+%  米灰系 → 例题（低饱和、低调）：白底 + 2.5pt 左竖线，长例题不染花页面
+%  砖红系 → 注释（警觉、强调）
+% ============================================================
+% 1. 绿色系：定义
+\definecolor{defMain}{HTML}{2E8B57}
+\definecolor{defBg}{HTML}{EAF6EE}
+% 2. 蓝色系：定理 / 命题 / 准则
+\definecolor{thmMain}{HTML}{2B6FA8}
+\definecolor{thmBg}{HTML}{E8F1FB}      % 定理专用：实心浅蓝底
+\definecolor{propBg}{HTML}{F6FAFE}     % 命题/准则专用：极浅蓝底
+% 3. 紫色系：推论 / 引理
+\definecolor{corMain}{HTML}{7D5BA6}
+\definecolor{corBg}{HTML}{F1ECFA}      % 推论专用：浅紫底
+% 4. 中性米灰：例题
+\definecolor{exMain}{HTML}{7A7568}     % 加深的米灰，解决标题发灰问题
+\definecolor{exBg}{HTML}{F8F7F4}       % 备用浅米底（默认使用纯白底留白）
+% 5. 砖红系：注释/注记
+\definecolor{remMain}{HTML}{B54848}
+\definecolor{remBg}{HTML}{FBEDED}
+
+% ---------- 3. 定理环境的显示名称与括号（中英各一套）----------
+% 想单独改某个词，改对应分支里的中文或英文即可。
+\ifEnglish
+  \def\nmDef{Definition}
+  \def\nmThm{Theorem}
+  \def\nmLemma{Lemma}
+  \def\nmCor{Corollary}
+  \def\nmCri{Criterion}
+  \def\nmPro{Proposition}
+  \def\nmRmk{Remark}
+  \def\nmEx{Example}
+  \def\nmProof{Proof}
+  \def\nmSol{Solution}
+  \def\nmLParen{(}
+  \def\nmRParen{)}
+\else
+  \def\nmDef{定义}
+  \def\nmThm{定理}
+  \def\nmLemma{引理}
+  \def\nmCor{推论}
+  \def\nmCri{准则}
+  \def\nmPro{命题}
+  \def\nmRmk{注释}
+  \def\nmEx{例}
+  \def\nmProof{证明}
+  \def\nmSol{解}
+  \def\nmLParen{（}
+  \def\nmRParen{）}
+\fi
+
+% ---------- 4. 章节标题 / 目录名（随语言切换）----------
+\ifEnglish
+  \ctexset{
+    chapter/name = {Chapter\space},
+    chapter/number = \arabic{chapter},
+    chapter/aftername = \space,
+  }
+  \renewcommand{\contentsname}{Contents}
+\fi

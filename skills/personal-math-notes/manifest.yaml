@@ -1,0 +1,8 @@
+name: personal-math-notes
+description: Write, extend and compile math notes with a personal LaTeX template (colored theorem boxes, shared numbering, bilingual toggle, single-file config).
+version: 1.0.0
+entry: SKILL.md
+assets:
+  - assets/template/
+references:
+  - references/template_guide.md

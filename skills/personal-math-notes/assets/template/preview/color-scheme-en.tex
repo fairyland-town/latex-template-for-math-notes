@@ -1,0 +1,95 @@
+% Color scheme overview (English): swatch table + environment samples (single page)
+% Compile: xelatex color-scheme-en.tex (run in this directory)
+\documentclass[12pt, a4paper, oneside, UTF8]{ctexbook}
+\usepackage{xcolor}
+\input{../personal}
+\input{../config/packages}
+\input{../config/mathmacros}
+\input{../config/theorems}
+
+% Tighter margins and spacing for a single page
+\geometry{top=12mm, bottom=10mm, left=16mm, right=16mm}
+\linespread{1.1}
+\tcbset{every box/.style={before skip=2pt, after skip=2pt, top=2pt, bottom=2pt}}
+
+% Swatch: left bar shows the main color, the rest shows the background color
+\newcommand{\swatch}[2]{\colorbox{#1}{\textcolor{#2}{\rule{3pt}{10pt}}\hspace{1.0cm}}}
+
+\begin{document}
+\pagestyle{empty}
+\footnotesize
+
+\begin{center}
+  {\LARGE\bfseries Math Notes Template · Color Scheme}\\[1mm]
+  {\normalsize\color{themeMain} Definition: Green · Theorem: Blue · Corollary: Purple · Example: Gray · Remark: Red}
+\end{center}
+
+\vspace{1mm}
+
+\section*{1. Color Swatches}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{@{}lcccc@{}}
+    \toprule
+    Environment & Swatch & Background (HTML) & Main (HTML) & Style \& meaning \\
+    \midrule
+    Definition & \swatch{defBg}{defMain}  & \texttt{EAF6EE} & \texttt{2E8B57} & Green, solid light fill: foundation \\
+    Theorem    & \swatch{thmBg}{thmMain}  & \texttt{E8F1FB} & \texttt{2B6FA8} & Blue, solid light fill: calm, rational \\
+    Proposition& \swatch{propBg}{thmMain} & \texttt{F6FAFE} & \texttt{2B6FA8} & Blue, pale fill + thin border: secondary \\
+    Criterion  & \swatch{propBg}{thmMain} & \texttt{F6FAFE} & \texttt{2B6FA8} & Blue, pale fill + thin border: method \\
+    Corollary  & \swatch{corBg}{corMain}  & \texttt{F1ECFA} & \texttt{7D5BA6} & Purple, light fill: derived result \\
+    Lemma      & \swatch{white}{corMain}  & \texttt{FFFFFF} & \texttt{7D5BA6} & Purple, white + thin border: auxiliary \\
+    Example    & \swatch{white}{exMain}   & \texttt{FFFFFF} & \texttt{7A7568} & Gray, white + left bar: understated \\
+    Remark     & \swatch{remBg}{remMain}  & \texttt{FBEDED} & \texttt{B54848} & Brick red, solid light fill: attention \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+{\footnotesize Note: examples use a plain white background by default; \texttt{exBg=F8F7F4} is a spare light beige fill (enable in \texttt{theorems.tex} if desired).}
+
+\section*{2. Environments in Use}
+
+% Two columns, four boxes each; proof and solution below
+\begin{minipage}[t]{0.485\linewidth}
+\begin{definition}[Example]
+  A map $f:X\to Y$ assigns a unique $y\in Y$ to each $x\in X$.
+\end{definition}
+\begin{theorem}[Intermediate Value Theorem]
+  If $f$ is continuous on $[a,b]$, it attains every value between $f(a)$ and $f(b)$.
+\end{theorem}
+\begin{lemma}[Local Boundedness]
+  If $f$ is continuous at $x_0$, it is bounded on some neighborhood of $x_0$.
+\end{lemma}
+\begin{corollary}[Boundedness]
+  A continuous function on a closed interval is bounded.
+\end{corollary}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\linewidth}
+\begin{criterion}[Cauchy Criterion]
+  A sequence converges iff it is a Cauchy sequence.
+\end{criterion}
+\begin{proposition}[Uniqueness]
+  A limit, if it exists, is unique.
+\end{proposition}
+\begin{example}[Shortcuts]
+  Sets $\R,\Z,\N,\Q,\C$; norm $\norm{x}$; inner product $\inner{f}{g}$.
+\end{example}
+\begin{remark}[Note]
+  Theorems, lemmas, corollaries and criteria share one numbering sequence.
+\end{remark}
+\end{minipage}
+
+\vspace{2mm}
+\begin{proof}
+  By continuity, choose $\delta>0$ so that $\abs{x-x_0}<\delta$ implies $\abs{f(x)-f(x_0)}<1$.\qedhere
+\end{proof}
+\begin{solution}
+  Differentiate first, then set the derivative to zero to find the extremum.
+\end{solution}
+
+\vspace{2mm}
+{\footnotesize\color{black!60}
+Tip: all colors can be changed in one place (\texttt{personal.tex}); numbering rules and command reference are in \texttt{README.md}.}
+
+\end{document}

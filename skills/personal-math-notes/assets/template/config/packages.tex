@@ -1,0 +1,48 @@
+% 宏包与全局排版设置（一般不需要改）
+
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{esint}
+\usepackage{mathrsfs}
+\usepackage{extarrows}
+\usepackage{stackengine}
+\usepackage{booktabs}
+\usepackage[most]{tcolorbox}
+\usepackage[colorlinks=true, linkcolor=themeMain, citecolor=themeMain,
+            urlcolor=themeMain, breaklinks=true]{hyperref}
+
+% 图片统一放 figures/，正文里写文件名即可，无需带路径
+\graphicspath{{figures/}, {../figures/}, {../../figures/}}
+
+% 页面布局：A4、1.45 倍行距，适合长时间阅读与手写批注
+\linespread{1.45}
+\geometry{
+  top=25mm, bottom=23mm, left=22mm, right=22mm,
+  headheight=14pt, headsep=5mm, footskip=11mm
+}
+
+% 列表间距收紧一点，笔记更紧凑
+\setenumerate[1]{itemsep=3pt, partopsep=0pt, parsep=2pt, topsep=4pt}
+\setitemize[1]{itemsep=3pt, partopsep=0pt, parsep=2pt, topsep=4pt}
+\setdescription{itemsep=3pt, partopsep=0pt, parsep=2pt, topsep=4pt}
+
+% 页眉页脚：左章名、右节名、居中页码
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{themeMain!80!black}\nouppercase{\leftmark}}
+\fancyhead[R]{\small\color{themeMain!80!black}\nouppercase{\rightmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% 代码/符号环境样式（LaTeX 源码与 Mathematica）
+\lstset{
+  basicstyle=\ttfamily\small, breaklines=true, columns=flexible,
+  keywordstyle=\bfseries\color{themeMain}, commentstyle=\itshape\color{black!55},
+  stringstyle=\color{themeAccent}, numbers=left, numberstyle=\footnotesize,
+  frame=tb, xleftmargin=1.2em,
+}

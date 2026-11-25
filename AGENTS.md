@@ -2,6 +2,14 @@
 
 This file tells any AI assistant how to work with this LaTeX math-notes template. Read it together with `README.md` and `chapters/01-demo/chap.tex` before writing or editing content.
 
+## Two usage routes
+
+This repo serves two audiences:
+- **Hand-editing users** work directly on the root LaTeX project (`main.tex`, `config/`, `chapters/`). The `skills/` and `scripts/` folders are irrelevant to them.
+- **AI users** install the standard skill package at `skills/personal-math-notes/` via `scripts/install.sh` (supports `--agent codex|claude|workbuddy|opencode|openclaw|all`). The skill bundles a portable template copy in `assets/template/`.
+
+Both routes use the same template rules described in this file. Never force an AI workflow on a user who just wants the source.
+
 ## Project layout
 
 - `main.tex` — root file; starts with `\def\allfiles{}` and `\include`s each chapter. Add a line here when adding a chapter.
