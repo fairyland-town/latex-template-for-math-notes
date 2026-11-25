@@ -1,4 +1,4 @@
-# latex template for math note
+# latex template for math notes
 
 一套为数学笔记写作设计的 LaTeX 模板：彩色定理环境（可跨页、框内可插图）、按章节组织、中英文一键切换，
 所有个人设置收拢在 **一个文件** `personal.tex`，写作时只需维护章节文件。
