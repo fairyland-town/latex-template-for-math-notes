@@ -104,29 +104,51 @@ xelatex main.tex
 <a id="ai"></a>
 ## 四、AI 怎么用
 
-本机已安装配套的 WorkBuddy Skill（`personal-math-notes`），AI 知道这套模板的全部约定，可以直接按你的模板写内容。
+这套模板对任何 AI 助手都适用——ChatGPT、Claude、Gemini、Cursor、Copilot 或你惯用的编程 Agent 都可以。AI 不依赖任何专用插件：只要让它先读懂本仓库的约定，就能按模板写内容。
 
-### 直接对 AI 说
+### 第一步：让 AI 先读两个文件
 
-- **"用我的数学笔记模板写一篇《实数的完备性》笔记"** —— AI 会复制空白章模板、按环境规则写正文、加好 `\include`、编译并渲染预览。
+把下面两个文件提供给 AI（上传、贴内容或让它读取均可），它就能掌握全部约定：
+
+1. 本使用手册 `README.md`（环境语义、编号规则、命令、维护方式）
+2. 完整示例章 `chapters/01-demo/chap.tex`（各种环境的真实写法）
+
+然后直接下达任务即可，例如：
+
+- **"按这个模板写一篇《实数的完备性》笔记"** —— AI 会复制空白章模板、按环境规则写正文、加好 `\include`、编译并渲染预览。
 - **"帮我把这段讲义整理成 LaTeX 笔记"** —— 贴入文字/公式，AI 转成 `definition`/`theorem` 等环境并放进章节。
 - **"给我的笔记加一个拉格朗日中值定理的例题"** —— AI 定位对应章节，用 `example` + `solution` 追加。
 - **"把我的笔记改成英文版并编译"** —— AI 把 `\Englishfalse` 改成 `\Englishtrue`，正文同步翻译成英文。
 - **"编译我的数学笔记并检查错误"** —— AI 跑两遍 xelatex、检查日志、报告问题。
 
+### 给 AI 的提示词模板（可直接复制）
+
+```
+请按我提供的 github.com/fairyland-town/latex-template-for-math-notes 模板写一份数学笔记。
+先阅读 README 和 chapters/01-demo/chap.tex，再遵守以下约定：
+1. 用模板已有环境，不要自己造框：定义用 definition，定理/引理/推论/准则
+   用 theorem/lemma/corollary/criterion（这四类共用编号），命题与例题独立编号，
+   注释/证明/解不编号；所有环境都支持可选标题 []。
+2. 个人配置只改 personal.tex；正文写在 chapters/NN-主题/chap.tex，
+   并在 main.tex 中加对应的 \include。
+3. 数学符号优先用模板命令：\R \Z \bs{} \d \pd{}{} \norm{} \inner{}{} \pmat 等。
+4. 图片放 figures/，正文只写文件名；插图用 TikZ 生成后转 PNG。
+5. 编译用 xelatex 跑两遍；语言开关在 personal.tex 的 \Englishfalse/\Englishtrue。
+```
+
 ### AI 能做的具体事
 
 1. **写章节**：遵守环境语义（定义用 `definition`、定理用 `theorem`）、编号与 `\label` 规则。
-2. **生成插图**：用 TikZ `standalone` 生成 PDF 再转 PNG，放进 `figures/`（AI 知道要 `\clip` 限定画布）。
+2. **生成插图**：用 TikZ `standalone` 生成 PDF 再转 PNG，放进 `figures/`（要 `\clip` 限定画布）。
 3. **编译与排错**：双遍编译、查 `LaTeX Error`、修 `??` 引用。
 4. **批量整理**：把多段讲义拆成多章，统一命令与配色。
 5. **改配置**：换色只改 `personal.tex` 第 2 节，环境改名改对应 `\ifEnglish` 分支。
 
-### 换设备后如何恢复 AI 能力
-
-Skill 位于 `~/.workbuddy/skills/personal-math-notes/`，把整个目录复制到新机器同名路径即可；便携模板副本在同目录的 `assets/template/`，可用于在没有工作副本时快速建项目。
-
 > **AI 写作的边界**：语言开关只切换模板结构文字，**不会翻译正文**。让 AI 写英文笔记时，要明确要求它把正文也写成英文。
+
+### 可选：WorkBuddy 用户
+
+若你恰好使用 WorkBuddy，作者提供了一个配套 Skill（`personal-math-notes`），把它放到 `~/.workbuddy/skills/personal-math-notes/` 后，可直接说"用我的数学笔记模板写一篇 XX 笔记"，Skill 会自动按上述约定执行。这不是使用模板的前提——任何 AI 工具用上面的方法都能达到同样效果。
 
 ---
 
@@ -173,7 +195,7 @@ git clone https://github.com/fairyland-town/latex-template-for-math-notes.git
 
 ### 如何给 AI 加新约定
 
-把新规则写进 `~/.workbuddy/skills/personal-math-notes/SKILL.md` 或 `references/template_guide.md`，以后 AI 会自动遵守；若改了模板本身，同步覆盖 `assets/template/` 里的便携副本。
+把通用约定集中写在仓库根目录的 `AGENTS.md`（已提供），大多数 AI 编程工具会自动读取它；其他 AI 工具只要把该文件一并提供给 AI 即可。模板本身若改动，记得同步更新 `README.md`、`AGENTS.md` 和示例章。
 
 ---
 
@@ -187,7 +209,7 @@ git clone https://github.com/fairyland-town/latex-template-for-math-notes.git
 3. **视觉层次清楚**：5 大色系 + "同色不同形"，主次环境一眼可分。
 4. **中英双语一键切换**：封面、环境名、章节标题、目录名、日期同步切换，不用维护两套模板。
 5. **单章可独立编译**：写某章时不必编译整本书，迭代快。
-6. **AI 友好**：配套 Skill 让 AI 按同一套规则写作、插图、排错。
+6. **AI 友好**：自带 `AGENTS.md` 约定与可复制提示词，任何 AI 助手都能按同一套规则写作、插图、排错。
 7. **纯文本、可版本管理**：章节是 `.tex` 文本，Git diff 清晰，可长期维护。
 
 **缺点 / 限制**
@@ -223,6 +245,7 @@ git clone https://github.com/fairyland-town/latex-template-for-math-notes.git
 latex-template-for-math-notes/
 ├── main.tex              # 主文件：编译全部章节
 ├── personal.tex          # ★ 唯一需要改的个人配置
+├── AGENTS.md             # 给 AI 助手的通用约定（任何工具可用）
 ├── compile.bat           # 一键编译脚本（Windows）
 ├── config/
 │   ├── packages.tex      # 宏包与页面设置
