@@ -1,0 +1,18 @@
+% !TeX program = xelatex
+% 编译：xelatex main.tex（连跑两次，第一次生成目录/引用，第二次解析）
+\def\allfiles{}   % 标记：篇章文件被主文件包含时不再重复加载导言区
+\documentclass[12pt, a4paper, oneside, UTF8]{ctexbook}
+\usepackage{xcolor}                  % personal.tex 中要先定义颜色，故提前加载
+\input{personal}                     % 唯一个人配置文件：改标题/姓名/配色就改它
+\input{config/packages}
+\input{config/mathmacros}
+\input{config/theorems}
+
+\begin{document}
+\input{config/cover}
+
+\include{chapters/01-demo/chap}
+% 写自己的笔记：复制 chapters/00-template/chap.tex 到新文件夹，然后取消下一行注释
+% \include{chapters/00-template/chap}
+
+\end{document}

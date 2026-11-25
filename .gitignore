@@ -1,0 +1,18 @@
+# 参考仓库克隆（仅学习用，不发布）
+_source_repo/
+
+# WorkBuddy 项目缓存与记忆
+.workbuddy/
+
+# LaTeX 编译中间文件
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# 系统文件
+.DS_Store
+Thumbs.db

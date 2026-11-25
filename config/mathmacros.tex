@@ -1,0 +1,60 @@
+% =============================================================
+%  数学快捷命令库  ——  写公式时少敲键盘
+%  用法速查见 README.md；新增自己的命令直接追加到文件末尾。
+% =============================================================
+
+% ---------- 数集 ----------
+\newcommand{\R}{\mathbb{R}}   % 实数集
+\newcommand{\Z}{\mathbb{Z}}   % 整数集
+\newcommand{\N}{\mathbb{N}}   % 自然数集
+\newcommand{\Q}{\mathbb{Q}}   % 有理数集
+\newcommand{\C}{\mathbb{C}}   % 复数集
+
+% ---------- 微分与向量 ----------
+\renewcommand{\d}{\mathrm{d}}                       % 微分号 d（ upright）
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}} % 偏导 \pd{f}{x}
+\newcommand{\bs}[1]{\boldsymbol{#1}}                % 加粗：向量/矩阵
+\newcommand{\ora}[1]{\overrightarrow{#1}}           % 箭头：\ora{AB}
+\newcommand{\grad}{\nabla}                          % 梯度
+\newcommand{\dive}{\operatorname{div}}              % 散度
+\newcommand{\rotn}{\operatorname{rot}}              % 旋度
+\newcommand{\curl}{\operatorname{curl}}             % 旋度（另一写法）
+
+% ---------- 常用运算符 ----------
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\argmax}{\operatorname*{arg\,max}}
+\newcommand{\argmin}{\operatorname*{arg\,min}}
+\newcommand{\esssup}{\operatorname*{ess\,sup}}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+\newcommand{\T}{\mathsf{T}}                         % 转置 A^{\T}
+
+% ---------- 关系与记号 ----------
+\newcommand{\defeq}{\coloneqq}                      % 定义为
+\newcommand{\pll}{\;\/\!/\:}                        % 平行符号
+\newcommand{\ind}[1]{\mathbf{1}_{#1}}               % 示性函数
+\newcommand{\dx}[1]{\d #1}                          % \dx{x} -> dx
+
+% ---------- 排版辅助 ----------
+\newcommand{\myspace}[1]{\par\vspace{#1\baselineskip}}   % 空 n 行
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}} % 表格内换行
+\newcommand{\xrowht}[1][12pt]{\rule{0pt}{#1}} % 加高表格行：\xrowht[20pt]
+
+% ---------- 常用环境（可带行高参数）----------
+\newenvironment{ca}[1][1]{\linespread{#1}\selectfont\begin{cases}}{\end{cases}}
+\newenvironment{vx}[1][1]{\linespread{#1}\selectfont\begin{vmatrix}}{\end{vmatrix}}
+\newenvironment{pmat}[1][1]{\linespread{#1}\selectfont\begin{pmatrix}}{\end{pmatrix}}
+\newenvironment{bmat}[1][1]{\linespread{#1}\selectfont\begin{bmatrix}}{\end{bmatrix}}
+
+% ---------- 便捷书写 ----------
+\newcommand{\todo}[1]{\textcolor{themeAccent}{【#1】}}  % 待办/重点提醒
+\newcommand{\note}[1]{\marginpar{\scriptsize\color{themeMain}#1}} % 页边批注

@@ -1,0 +1,131 @@
+% 章节模板：本文件既可随 main.tex 整体编译，也可在此目录单独 xelatex chap.tex
+\ifx\allfiles\undefined
+\documentclass[12pt, a4paper, oneside, UTF8]{ctexbook}
+\usepackage{xcolor}
+\input{../../personal}
+\input{../../config/packages}
+\input{../../config/mathmacros}
+\input{../../config/theorems}
+\begin{document}
+\else
+\fi
+
+\chapter{极限与连续}
+
+本章演示模板的核心功能：彩色定理框、数学快捷命令、表格与图片。
+所有编号、页眉页脚与目录均自动生成。
+
+\section{映射与函数}
+
+\begin{definition}[映射]
+  设 $X,Y$ 是两个非空集合。若存在对应法则 $f$，使得对 $X$ 中每个元素 $x$，
+  在 $Y$ 中都有唯一确定的元素 $y$ 与之对应，则称 $f$ 为从 $X$ 到 $Y$ 的\textbf{映射}，
+  记作 $f:X\to Y$，其中 $y=f(x)$。
+\end{definition}
+
+\begin{remark}
+  \todo{注意} 映射要求"每个 $x$ 恰有一个像"，但允许不同的 $x$ 对应同一个 $y$。
+\end{remark}
+
+\section{极限的定义}
+
+\begin{definition}[数列极限]
+  设 $\{a_n\}$ 为一数列，$A\in\R$。若对任意 $\varepsilon>0$，存在正整数 $N$，
+  使得当 $n>N$ 时恒有 $\abs{a_n-A}<\varepsilon$，则称数列 $\{a_n\}$ \textbf{收敛于} $A$，
+  记作 $\lim\limits_{n\to\infty}a_n=A$。
+\end{definition}
+
+\begin{theorem}[夹逼准则]
+  若数列 $\{a_n\},\{b_n\},\{c_n\}$ 满足
+  \[
+    a_n\le b_n\le c_n \quad (n=1,2,\dots),
+  \]
+  且 $\lim\limits_{n\to\infty}a_n=\lim\limits_{n\to\infty}c_n=A$，
+  则 $\lim\limits_{n\to\infty}b_n=A$。\label{thm:squeeze}
+\end{theorem}
+
+\begin{proof}
+  对任意 $\varepsilon>0$，由 $\lim a_n=A$ 知存在 $N_1$，当 $n>N_1$ 时 $A-\varepsilon<a_n$；
+  由 $\lim c_n=A$ 知存在 $N_2$，当 $n>N_2$ 时 $c_n<A+\varepsilon$。
+  取 $N=\max\{N_1,N_2\}$，则当 $n>N$ 时
+  \[
+    A-\varepsilon<a_n\le b_n\le c_n<A+\varepsilon,
+  \]
+  即 $\abs{b_n-A}<\varepsilon$，故 $\lim b_n=A$。\qedhere
+\end{proof}
+
+\begin{corollary}
+  若 $\abs{b_n}\le c_n$ 且 $\lim c_n=0$，则 $\lim b_n=0$。
+\end{corollary}
+
+\begin{proposition}[有界性与收敛性]
+  收敛数列必有界；但有界数列不一定收敛，例如 $a_n=(-1)^n$。
+\end{proposition}
+
+\section{常用记号速查}
+
+下面是本模板内置快捷命令的实际排版效果，写笔记时可以直接调用。
+
+\begin{example}[快捷命令]
+  数集：$\R,\Z,\N,\Q,\C$；\quad 向量：$\bs{x}$，$\ora{AB}$；\quad
+  微分：$\d x$，偏导：$\pd{f}{x}$；\quad 梯度散度：$\grad f,\ \dive \bs{F},\ \curl \bs{A}$。
+  \par 运算符：$\rank A,\ \diag(a_1,a_2),\ \norm{x},\ \abs{x},\ \inner{f}{g},\ A^{\T}$。
+\end{example}
+
+\begin{example}[分段与矩阵]
+  \[
+    f(x)=\begin{ca}
+      x^2, & x\ge 0\\
+      -x,  & x<0
+    \end{ca},
+    \qquad
+    \bs{A}=\begin{pmat}
+      1 & 2\\
+      3 & 4
+    \end{pmat}.
+  \]
+\end{example}
+
+\begin{table}[htbp]
+  \centering
+  \caption{无穷小的比较（\texttt{xrowht} 加高行距示意）}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    关系 & 定义 \\
+    \midrule\hline\xrowht[20pt]
+    $\alpha\sim\beta$ & $\lim \alpha/\beta=1$ \\
+    \hline\xrowht[20pt]
+    $\alpha=o(\beta)$ & $\lim \alpha/\beta=0$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{图文混排}
+
+图 1 展示了一个简单函数图像。图片统一放入 \texttt{figures/} 目录，
+正文里只需写文件名；定理框内也可以放图片，不再受旧版 framed 方案的限制。
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.62\linewidth]{example-curve.png}
+  \caption{函数 $y=\sin x$ 与 $y=0.5x$ 的图像}
+\end{figure}
+
+\begin{lemma}[局部有界性]
+  若函数 $f$ 在 $x_0$ 处连续，则 $f$ 在 $x_0$ 的某邻域内有界。
+\end{lemma}
+
+\begin{criterion}[柯西收敛准则]
+  数列 $\{a_n\}$ 收敛的充要条件是：对任意 $\varepsilon>0$，存在 $N$，
+  当 $m,n>N$ 时恒有 $\abs{a_m-a_n}<\varepsilon$。
+\end{criterion}
+
+\begin{solution}
+  这里演示 \texttt{solution} 环境（不编号，标题为"解"）。
+  \todo{提示} 用 \texttt{todo} 命令插入醒目的重点提醒。
+  \note{页边批注示例}
+\end{solution}
+
+\ifx\allfiles\undefined
+\end{document}
+\fi

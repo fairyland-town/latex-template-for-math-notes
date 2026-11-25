@@ -1,0 +1,43 @@
+% 空白章节模板：复制到新文件夹后，把 {{章节标题}} 换成实际标题即可写作。
+% 本文件既可随 main.tex 整体编译，也可在本目录单独 xelatex chap.tex 预览。
+\ifx\allfiles\undefined
+\documentclass[12pt, a4paper, oneside, UTF8]{ctexbook}
+\usepackage{xcolor}
+\input{../../personal}
+\input{../../config/packages}
+\input{../../config/mathmacros}
+\input{../../config/theorems}
+\begin{document}
+\else
+\fi
+
+\chapter{{{章节标题}}}
+
+\section{第一节}
+
+在这里写正文。常用环境示例：
+
+% 取消注释即可使用（按需删掉不用的）：
+% \begin{definition}[名称] ... \end{definition}
+% \begin{theorem}[名称] ... \end{theorem}
+% \begin{lemma} ... \end{lemma}
+% \begin{corollary} ... \end{corollary}
+% \begin{criterion} ... \end{criterion}
+% \begin{proposition} ... \end{proposition}
+% \begin{remark} ... \end{remark}
+% \begin{example} ... \end{example}
+% \begin{proof} ... \end{proof}
+% \begin{solution} ... \end{solution}
+
+% 图片放在 figures/ 目录：
+% \begin{figure}[htbp]\centering
+%   \includegraphics[width=0.7\linewidth]{your-figure.png}
+%   \caption{图注}\label{fig:xxx}
+% \end{figure}
+
+% 公式：
+% \begin{equation}\label{eq:xxx} f(x) = \dots \end{equation}
+
+\ifx\allfiles\undefined
+\end{document}
+\fi

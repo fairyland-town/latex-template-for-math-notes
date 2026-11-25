@@ -1,0 +1,95 @@
+% 配色效果图：色卡对照 + 环境实拍（单页版）
+% 编译：xelatex color-scheme.tex（在本目录下运行）
+\documentclass[12pt, a4paper, oneside, UTF8]{ctexbook}
+\usepackage{xcolor}
+\input{../personal}
+\input{../config/packages}
+\input{../config/mathmacros}
+\input{../config/theorems}
+
+% 本页专用：收紧页边距与行距，保证单页容纳全部内容
+\geometry{top=16mm, bottom=14mm, left=16mm, right=16mm}
+\linespread{1.2}
+\tcbset{every box/.style={before skip=4pt, after skip=4pt, top=3pt, bottom=3pt}}
+
+% 色块：左边条显示主色，其余区域显示背景色
+\newcommand{\swatch}[2]{\colorbox{#1}{\textcolor{#2}{\rule{3pt}{10pt}}\hspace{1.0cm}}}
+
+\begin{document}
+\pagestyle{empty}
+\small
+
+\begin{center}
+  {\LARGE\bfseries 数学笔记模板 · 配色总览}\\[1mm]
+  {\normalsize\color{themeMain} 定义绿 · 定理蓝 · 推论紫 · 例题灰 · 注释红}
+\end{center}
+
+\vspace{1mm}
+
+\section*{一、色卡对照}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{@{}lcccc@{}}
+    \toprule
+    环境 & 色块示意 & 背景色 (HTML) & 主色 (HTML) & 样式与含义 \\
+    \midrule
+    定义 & \swatch{defBg}{defMain}  & \texttt{EAF6EE} & \texttt{2E8B57} & 绿·实心浅底：基础、自然 \\
+    定理 & \swatch{thmBg}{thmMain}  & \texttt{E8F1FB} & \texttt{2B6FA8} & 蓝·实心浅底：冷静、理性 \\
+    命题 & \swatch{propBg}{thmMain} & \texttt{F6FAFE} & \texttt{2B6FA8} & 蓝·极浅底+细框：主次之别 \\
+    准则 & \swatch{propBg}{thmMain} & \texttt{F6FAFE} & \texttt{2B6FA8} & 蓝·极浅底+细框：方法、活力 \\
+    推论 & \swatch{corBg}{corMain}  & \texttt{F1ECFA} & \texttt{7D5BA6} & 紫·浅紫底：知识、派生 \\
+引理 & \swatch{white}{corMain}  & \texttt{FFFFFF} & \texttt{7D5BA6} & 紫·白底细框：辅助定理 \\
+例题 & \swatch{white}{exMain}   & \texttt{FFFFFF} & \texttt{7A7568} & 米灰·白底左竖线：低调 \\
+    注释 & \swatch{remBg}{remMain}  & \texttt{FBEDED} & \texttt{B54848} & 砖红·实心浅底：警觉、强调 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+{\footnotesize 注：例题默认纯白底留白，\texttt{exBg=F8F7F4} 为备用浅米底（需要时可在 \texttt{theorems.tex} 中启用）。}
+
+\section*{二、各环境实际效果}
+
+% 两列排版，左列四个、右列四个，底部放不编号的证明/解
+\begin{minipage}[t]{0.485\linewidth}
+\begin{definition}[示例]
+  若 $f:X\to Y$ 对每个 $x\in X$ 有唯一 $y\in Y$ 对应，则称 $f$ 为映射。
+\end{definition}
+\begin{theorem}[介值定理]
+  若 $f$ 在 $[a,b]$ 上连续，则 $f$ 取遍 $f(a)$ 与 $f(b)$ 之间的一切值。
+\end{theorem}
+\begin{lemma}[局部有界性]
+  若 $f$ 在 $x_0$ 处连续，则 $f$ 在 $x_0$ 的某邻域内有界。
+\end{lemma}
+\begin{corollary}[有界性]
+  闭区间上的连续函数必有界。
+\end{corollary}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\linewidth}
+\begin{criterion}[柯西收敛准则]
+  数列收敛当且仅当它是柯西列。
+\end{criterion}
+\begin{proposition}[唯一性]
+  极限若存在则唯一。
+\end{proposition}
+\begin{example}[快捷命令]
+  数集 $\R,\Z,\N,\Q,\C$；范数 $\norm{x}$；内积 $\inner{f}{g}$。
+\end{example}
+\begin{remark}[说明]
+  定理、引理、推论、准则共用一套编号。
+\end{remark}
+\end{minipage}
+
+\vspace{2mm}
+\begin{proof}
+  由连续性可取 $\delta>0$，使得 $\abs{x-x_0}<\delta$ 时 $\abs{f(x)-f(x_0)}<1$。\qedhere
+\end{proof}
+\begin{solution}
+  先求导，再令导数为零，即可求得极值点。
+\end{solution}
+
+\vfill
+{\footnotesize\color{black!60}
+提示：以上配色均可在 \texttt{personal.tex} 中一处修改；编号规则与命令速查见 \texttt{README.md}。}
+
+\end{document}
