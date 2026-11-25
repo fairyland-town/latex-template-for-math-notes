@@ -166,7 +166,7 @@ git commit -m "说明改了什么"
 git push origin main
 
 # 换机器拉最新
-git clone https://github.com/fairyland-town/math-notes-latex-template.git
+git clone https://github.com/fairyland-town/latex-template-for-math-notes.git
 ```
 
 建议每写完一章提交一次，章节文件是纯文本，diff 非常清晰。
@@ -220,7 +220,7 @@ git clone https://github.com/fairyland-town/math-notes-latex-template.git
 ## 八、结构与命令速查
 
 ```
-math-notes-latex-template/
+latex-template-for-math-notes/
 ├── main.tex              # 主文件：编译全部章节
 ├── personal.tex          # ★ 唯一需要改的个人配置
 ├── compile.bat           # 一键编译脚本（Windows）
@@ -255,4 +255,4 @@ math-notes-latex-template/
 
 ---
 
-**仓库**：https://github.com/fairyland-town/math-notes-latex-template
+**仓库**：https://github.com/fairyland-town/latex-template-for-math-notes

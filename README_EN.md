@@ -166,7 +166,7 @@ git commit -m "describe what changed"
 git push origin main
 
 # On a new machine
-git clone https://github.com/fairyland-town/math-notes-latex-template.git
+git clone https://github.com/fairyland-town/latex-template-for-math-notes.git
 ```
 
 Commit once per chapter: chapter files are plain text, so diffs are very readable.
@@ -220,7 +220,7 @@ Write new rules into `~/.workbuddy/skills/personal-math-notes/SKILL.md` or `refe
 ## 8. Structure & Command Reference
 
 ```
-math-notes-latex-template/
+latex-template-for-math-notes/
 ├── main.tex              # Main file: compiles all chapters
 ├── personal.tex          # ★ The only personal config file
 ├── compile.bat           # One-click compile script (Windows)
@@ -255,4 +255,4 @@ Add custom commands by appending `\newcommand{\yourcmd}[n]{definition}` to `conf
 
 ---
 
-**Repository**: https://github.com/fairyland-town/math-notes-latex-template
+**Repository**: https://github.com/fairyland-town/latex-template-for-math-notes
